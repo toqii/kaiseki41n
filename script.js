@@ -87,10 +87,12 @@
                 if (!target) return;
 
                 e.preventDefault();
-                var top = target.getBoundingClientRect().top + window.pageYOffset;
+                var nav = document.getElementById('main-nav');
+                var offset = nav ? nav.offsetHeight + 12 : 0;
+                var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
                 window.scrollTo({
-                    top: top,
+                    top: Math.max(top, 0),
                     behavior: 'smooth'
                 });
             });
